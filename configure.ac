@@ -330,6 +330,7 @@ AC_SUBST(LV_THREAD_CFLAGS)
 AC_CHECK_SIZEOF(short)
 AC_CHECK_SIZEOF(int)
 AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(long long)
 AC_CHECK_SIZEOF(size_t)
                                                                                                                
 dnl Try to figure out whether visual_size should be long or int
@@ -344,6 +345,9 @@ $ac_cv_sizeof_int)
   ;;
 $ac_cv_sizeof_long)
   visual_size_type=long
+  ;;
+$ac_cv_sizeof_long_long)
+  visual_size_type='long long'
   ;;
 *)  AC_MSG_ERROR([No type matching size_t in size])
 	;;
@@ -801,7 +805,7 @@ echo >>$outfile
    lv_have_threads=$have_threads
    lv_enable_threads=$enable_threads
 
-case $visual_size_type in
+case "$visual_size_type" in
 short)
   visual_size_format='"hu"'
   ;;
