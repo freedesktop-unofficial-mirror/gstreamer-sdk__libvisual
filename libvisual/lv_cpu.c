@@ -115,7 +115,11 @@ static void sigfpe_handler_sse( int signal, struct sigcontext sc )
 LONG CALLBACK win32_sig_handler_sse(EXCEPTION_POINTERS* ep)
 {
 	if(ep->ExceptionRecord->ExceptionCode==EXCEPTION_ILLEGAL_INSTRUCTION){
+#ifdef _WIN64
+		ep->ContextRecord->Rip +=3;
+#else
 		ep->ContextRecord->Eip +=3;
+#endif
 		__lv_cpu_caps.hasSSE=0;       
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
