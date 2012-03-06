@@ -31,11 +31,15 @@
 #ifdef HAVE_SCHED_H
 # include <sched.h>
 # include <sys/types.h>
+#ifdef HAVE_SCHED_SETSCHEDULER
 # define HAVE_SCHED 1
+#endif
 #elif defined HAVE_SYS_SCHED_H
 # include <sys/sched.h>
 # include <sys/types.h>
+#ifdef HAVE_SCHED_SETSCHEDULER
 # define HAVE_SCHED 1
+#endif
 #endif
 
 #include "lv_os.h"
