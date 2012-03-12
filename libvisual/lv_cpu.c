@@ -144,7 +144,9 @@ static void sigill_handler (int sig)
 	__lv_powerpc_canjump = 0;
 	siglongjmp (__lv_powerpc_jmpbuf, 1);
 }
+#endif
 
+#if defined(VISUAL_ARCH_POWERPC)
 static void check_os_altivec_support( void )
 {
 #if defined(VISUAL_OS_DARWIN)
